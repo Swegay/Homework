@@ -1,3 +1,3 @@
 Doing some homework.
-Now trying to get remove .idea folder.
+Now trying to remove .idea folder.
 LOL just removed it.
