@@ -1,56 +1,41 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
-    <!--    <link rel="stylesheet" href="css/styles.css">-->
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
 
-    <title>{% block title %}{% endblock %}</title>
-    {% load bootstrap5 %}
-    {% bootstrap_css %}
-    {% bootstrap_javascript %}
-</head>
-<body>
+{% endblock %}
 
-<div class="container">
-    <ul class="nav bg-primary">
-        <li class="nav-item">
-            <a class="nav-link link-light" href="/todos">To Do's</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link link-light" href="/add">Add</a>
-        </li>
-    </ul>
+{% block content %}
 
-    {% block content %}
-    {% endblock %}
-</div>
+{% include 'header.html' %}
 
 <div class="text-center">
-    <img src="https://habrastorage.org/files/23b/a66/c6d/23ba66c6d7144143ade00708ec27ac65.jpg" class="mx-auto d-block">
+    <img src="{% static 'images/meme.jpeg' %}" class="mx-auto d-block">
 </div>
-
 
 <div class="container mt-4">
     <form action="" method="POST" class="mx-auto text-center">
         {% csrf_token %}
 
         {% for field in form %}
-            <div class="mb-3">
+        <div class="mb-3">
+            <div>
                 {{ field.label_tag }}
-                {{ field }}
-                {% if field.errors|length > 0 %}
-                    <div class="text-danger">
-                        {{ field.errors }}
-                    </div>
-                {% endif %}
             </div>
+
+            <div>
+                {{ field }}
+            </div>
+            {% if field.errors|length > 0 %}
+            <div class="text-danger">
+                {{ field.errors }}
+            </div>
+            {% endif %}
+        </div>
         {% endfor %}
 
         <div class="mb-3">
-            <button type="submit" class="btn btn-primary">Create Todo</button>
+            <button type="submit" class="btn btn-primary btn-success">Create Todo</button>
         </div>
     </form>
 </div>
-
-</body>
-</html>
+{% endblock %}

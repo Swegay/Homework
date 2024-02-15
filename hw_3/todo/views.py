@@ -32,7 +32,6 @@ def todos_page_view(request):
         return render(request, 'todo/index.html', {'todos': todos, 'form': form})
 
 
-
 def delete_todo(request, pk):
     try:
         todo = Todo.objects.get(id=pk)

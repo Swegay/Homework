@@ -10,4 +10,3 @@ class Todo(models.Model):
 
     def __str__(self):
         return f'ID: {self.id} - {self.title}'
-
