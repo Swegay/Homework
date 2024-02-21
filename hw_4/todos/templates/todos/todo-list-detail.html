@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Todo Lists</title>
+<style>
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            {% include 'header.html' %}
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-8 offset-2">
+            <h2>{{ todo_list.title }}</h2>
+            <p>{{ todo_list.description }}</p>
+
+            <div class="d-flex justify-content-between mb-4">
+                <form action="{% url 'delete_todo_list' id=todo_list.id %}" method="POST">
+                    {% csrf_token %}
+                    <button class="btn btn-danger" type="submit">Delete Todo List</button>
+                </form>
+
+                <a href="{% url 'edit_todo_list' id=todo_list.id %}" class="btn btn-primary">Edit Todo List</a>
+            </div>
+            <hr>
+
+            <h1 class="styles text-center">To Do's</h1>
+            <div class="container mx-auto">
+                {% if todos|length > 0 %}
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Due Date</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for todo in todos %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ todo.title }}</td>
+                        <td>{{ todo.description}}</td>
+                        <td>{{ todo.due_date }}</td>
+                        <td>{{ todo.status }}</td>
+                        <td>
+                            <div class="d-flex">
+                                <a href="{% url 'delete_todo' id=todo.id %}" class="btn btn-danger me-2">Delete</a>
+                                <a href="{% url 'edit_todo' id=todo.id %}" class="btn btn-primary">Edit</a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                <p class="text-center">No To Do's</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
