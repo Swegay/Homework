@@ -10,9 +10,9 @@ body {
 }
 
 table {
-    border-style: dotted; !important
-    border: 2px solid;
-    border-color: black;
+    border-style: dotted !important;
+    border: 2px solid #000;
+    border-color: black !important;
     border-collapse: collapse;
     width: 100%;
 }
