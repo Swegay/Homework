@@ -12,7 +12,7 @@ class TodoList(models.Model):
 class Todo(models.Model):
     title = models.CharField(max_length=255)
     description = models.CharField(max_length=255)
-    due_date = models.DateField()
+    due_date = models.DateTimeField()
     status = models.BooleanField(default=False)
     todo_list = models.ForeignKey(TodoList, on_delete=models.CASCADE)
 

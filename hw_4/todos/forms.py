@@ -22,7 +22,9 @@ class CreateTodoForm(forms.ModelForm):
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Todo title'}),
             'description': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Todo description'}),
-            'due_date': forms.DateInput(attrs={'class': 'form-control', 'placeholder': 'Enter due date'}),
+            'due_date': forms.DateTimeInput(attrs={'type': 'datetime-local', 'class': 'form-control'},
+                                            format='%Y-%m-%dT%H:%M'),
             'status': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
             'todo_list': forms.Select(attrs={'class': 'form-select'}),
         }
+        input_formats = ['%Y-%m-%dT%H:%M']
