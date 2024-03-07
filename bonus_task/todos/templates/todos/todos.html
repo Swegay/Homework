@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block head %}
+{% endblock %}
+
+{% block content %}
+    {% include 'header.html' %}
+
+    <div class="container mt-4">
+        <form method="get" action="{% url 'todos_page' %}" class="mb-3">
+            <div class="input-group">
+                <input type="text" name="title" class="form-control" placeholder="Search by title" value="{{ request.GET.title }}">
+                <input type="text" name="due_date" class="form-control" placeholder="Search by due date" value="{{ request.GET.due_date }}">
+                <button type="submit" class="btn btn-primary">Filter</button>
+            </div>
+        </form>
+
+        {% if all_todos|length > 0 %}
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">ID</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Due Date</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for todo in all_todos %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ todo.id }}</td>
+                            <td>{{ todo.title }}</td>
+                            <td>{{ todo.due_date }}</td>
+                            <td>{{ todo.status }}</td>
+                            <td>
+                                <a href="/todos/{{ todo.id }}/delete" class="btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <div class="pagination">
+                <span class="step-links">
+                    {% if all_todos.has_previous %}
+                        <a href="?page=1">&laquo; first</a>
+                        <a href="?page={{ all_todos.previous_page_number }}">previous</a>
+                    {% endif %}
+
+                    <span class="current">
+                        Page {{ all_todos.number }} of {{ all_todos.paginator.num_pages }}.
+                    </span>
+
+                    {% if all_todos.has_next %}
+                        <a href="?page={{ all_todos.next_page_number }}">next</a>
+                        <a href="?page={{ all_todos.paginator.num_pages }}">last &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+        {% else %}
+            <p class="text-center">No To Do's</p>
+        {% endif %}
+    </div>
+{% endblock %}

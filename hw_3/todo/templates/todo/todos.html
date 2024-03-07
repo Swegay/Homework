@@ -16,6 +16,7 @@
         <thead>
         <tr>
             <th scope="col">#</th>
+            <th scope="col">ID</th>
             <th scope="col">Title</th>
             <th scope="col">Due Date</th>
             <th scope="col">Status</th>
@@ -26,6 +27,7 @@
         {% for todo in all_todos %}
         <tr>
             <td>{{ forloop.counter }}</td>
+            <td>{{ todo.id }}</td>
             <td>{{ todo.title }}</td>
             <td>{{ todo.due_date }}</td>
             <td>{{ todo.status}}</td>

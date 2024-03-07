@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+{% endblock %}
+
+{% block content %}
+    {% include 'header.html' %}
+
+<div class="text-center">
+    <img src="{% static 'images/meme.jpeg' %}" class="mx-auto d-block">
+</div>
+
+<div class="container mt-4">
+    <form action="" method="POST" class="mx-auto text-center">
+        {% csrf_token %}
+
+        {% for field in form %}
+        <div class="mb-3">
+            <div>
+                {{ field.label_tag }}
+            </div>
+
+            <div>
+                {{ field }}
+            </div>
+            {% if field.errors|length > 0 %}
+            <div class="text-danger">
+                {{ field.errors }}
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary btn-success">Create Todo</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
