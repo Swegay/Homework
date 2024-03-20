@@ -1,0 +1,30 @@
+body {
+    background-color: #ffe3bb;
+}
+
+.center {
+    margin: auto; !important;
+    width: 50%;
+    border: 3px solid green;
+    padding: 10px;
+}
+
+table {
+    border-style: dotted !important;
+    border: 2px solid #000;
+    border-color: black !important;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid #000000;
+    padding: 8px;
+    text-align: center;
+}
+
+.btn-danger {
+    background-color: #dc9eff;
+    border-color: #ffffff;
+    color: #000000;
+}
