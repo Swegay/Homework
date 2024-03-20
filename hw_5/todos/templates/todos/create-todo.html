@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Create Todo</title>
+<style>
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            {% include 'header.html' %}
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-8 offset-2">
+            <form action="{% url 'create_todo' %}" method="POST" class="my-4">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="mb-3">
+                        <label class="form-label" for="{{ field.auto_id }}">{{ field.label }}</label>
+                        {{ field }}
+                        {% if field.errors|length > 0 %}
+                        <div class="text-danger">
+                            {{ field.errors }}
+                        </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                <div class="d-flex justify-content-end">
+                    <button class="btn btn-success" type="submit">Create Todo</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

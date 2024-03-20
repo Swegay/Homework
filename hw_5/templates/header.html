@@ -1,0 +1,20 @@
+{% load static %}
+
+<div class="container">
+    <ul class="nav bg-primary ">
+        {% if user.is_authenticated %}
+        <li class="nav-item link-light mb-2 mb-lg-0 d-flex justify-content-end align-items-center">
+            {{ user.first_name }} {{ user.last_name}}
+        </li>
+        <li class="nav-item">
+            <a class="nav-link link-light" aria-current="page" href="{% url 'todo-lists' %}">Todos</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link link-light" href="/create-todo">Create</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link link-light" aria-current="page" href="{% url 'logout' %}">Logout</a>
+        </li>
+    </ul>
+    {% endif %}
+</div>

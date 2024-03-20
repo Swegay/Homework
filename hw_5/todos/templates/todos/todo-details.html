@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block content %}
+
+{% include 'header.html' %}
+
+<div class="container mt-4">
+    <h1>{{ todo.title }}</h1>
+    <ol>
+        <li>Title: {{ todo.title }}</li>
+        <li>Description: {{ todo.description }}</li>
+        <li>Deadline {{ todo.due_date }}</li>
+        <li>Status: {{ todo.duration }}</li>
+    </ol>
+</div>
+{% endblock %}
