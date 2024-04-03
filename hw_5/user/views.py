@@ -54,6 +54,7 @@ def get_user_todos(request):
     todos = Todo.objects.filter(user=request.user)
     return render(request, 'todos.html', {'todos': todos})
 
+
 @login_required
 def get_user_todo_details(request, id):
     try:
@@ -62,6 +63,7 @@ def get_user_todo_details(request, id):
     except Todo.DoesNotExist:
         pass
 
+
 @login_required
 def create_user_todo(request):
     if request.method == 'POST':
@@ -69,8 +71,10 @@ def create_user_todo(request):
         description = request.POST.get('description')
         due_date = request.POST.get('due_date')
         status = request.POST.get('status', False)
-        todo = Todo.objects.create(title=title, description=description, due_date=due_date, status=status, user=request.user)
+        todo = Todo.objects.create(title=title, description=description, due_date=due_date, status=status,
+                                   user=request.user)
         return redirect('user_todos')
+
 
 @login_required
 def delete_user_todo(request, id):
